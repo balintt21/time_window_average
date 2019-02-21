@@ -11,8 +11,8 @@ template<typename T>
 class TimeWindowAverage
 {
 	const int64_t						timeWindowMS;
-	mutable std::mutex				    mutex;
-	T 							 		sum;
+	mutable std::mutex					mutex;
+	T 									sum;
 	std::queue<std::pair<int64_t,T> > 	queue;
 public:
 	/**
