@@ -10,10 +10,10 @@
 template<typename T, T GET_VALUE_IF_EMPTY = T()>
 class TimeWindowAverage
 {
-    const int64_t						timeWindowMS;
-    mutable std::mutex					mutex;
-    T 									sum;
-    std::queue<std::pair<int64_t,T> > 	queue;
+    const int64_t                       timeWindowMS;
+    mutable std::mutex                  mutex;
+    T                                   sum;
+    std::queue<std::pair<int64_t,T> >   queue;
 public:
     /**
     * Construct a TimeWindowAverage object
