@@ -7,7 +7,7 @@
 #include <chrono>
 
 /* ! Thread SAFE ! */
-template<typename T>
+template<typename T, T GET_VALUE_IF_EMPTY = T()>
 class TimeWindowAverage
 {
 	const int64_t						timeWindowMS;
@@ -52,7 +52,7 @@ public:
 	{
 		std::lock_guard<std::mutex> lock(mutex);
 		//since C++11, the complexity of std::queue::size is constant: O(1)
-		return (sum / static_cast<T>(queue.size()));
+		return ( queue.empty() ? GET_VALUE_IF_EMPTY : (sum / static_cast<T>(queue.size())) );
 	}
 };
 
